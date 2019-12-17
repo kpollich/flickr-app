@@ -1,0 +1,161 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  padding: 0 5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.gallery {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.gallery-button {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.gallery-button:hover {
+  transform: scale(1.05);
+}
+
+.gallery-button > img {
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.load-more {
+  display: block;
+  font-size: 20px;
+  margin: 2rem auto;
+  width: 10rem;
+}
+
+.lightbox {
+  background-color: black;
+  color: white;
+  height: 100%;
+  left: 0;
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.lightbox-close {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+.lightbox-current-image {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+.lightbox-current-image > img {
+  height: 500px;
+}
+
+.lightbox-current-image > button {
+  margin: 0 1rem;
+}
+
+.lightbox-strip {
+  display: grid;
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(8, 1fr);
+  margin: auto;
+  width: 70%;
+}
+
+.lightbox-strip > img {
+  height: 100px;
+  object-fit: contain;
+  width: 100px;
+}
+
+.lightbox-strip > img.current {
+  border: 2px solid gold;
+}
+
+.lightbox-previous,
+.lightbox-next,
+.lightbox-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+}
+
+.lightbox-previous:disabled,
+.lightbox-next:disabled,
+.lightbox-close:disabled {
+  color: lightgrey;
+  opacity: 0.3;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding: 1rem;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox-current-image {
+    margin: 0.5rem auto;
+  }
+
+  .lightbox-current-image > button {
+    margin: 0;
+  }
+
+  .lightbox-current-image > img {
+    height: auto;
+    width: 80%;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .lightbox-strip {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
+    width: 100%;
+  }
+
+  .lightbox-strip > img {
+    width: 100%;
+  }
+
+  .lightbox-previous,
+  .lightbox-next,
+  .lightbox-close {
+    font-size: 24px;
+  }
+}
