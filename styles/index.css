@@ -89,14 +89,22 @@ main {
   width: 70%;
 }
 
-.lightbox-strip > img {
+.lightbox-strip-button {
   height: 100px;
-  object-fit: contain;
   width: 100px;
+  background: none;
+  border: none;
 }
 
-.lightbox-strip > img.current {
+.lightbox-strip-button.current {
   border: 2px solid gold;
+}
+
+.lightbox-strip-button > img {
+  height: 100%;
+  width: 100%;
+
+  object-fit: contain;
 }
 
 .lightbox-previous,
@@ -149,7 +157,7 @@ main {
     width: 100%;
   }
 
-  .lightbox-strip > img {
+  .lightbox-strip-button {
     width: 100%;
   }
 

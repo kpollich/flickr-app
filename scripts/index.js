@@ -28,12 +28,22 @@ getFlickrPhotos(flickrPage).then(photos => {
       return;
     }
 
+    // Events on dynamically created elements in the lightbox (the current image, the photo strip)
+    // bubble up here, so we have to handle them in a somewhat ugly way
     if (e.target.classList.contains("lightbox-close")) {
       lightbox.classList.add("hidden");
     } else if (e.target.classList.contains("lightbox-previous")) {
       goToPreviousImage();
     } else if (e.target.classList.contains("lightbox-next")) {
       goToNextImage();
+    } else if (e.target.classList.contains("lightbox-strip-button")) {
+      currentPhotoIndex = Number(e.target.dataset.index);
+      renderLightbox();
+    } else if (
+      e.target.parentNode.classList.contains("lightbox-strip-button")
+    ) {
+      currentPhotoIndex = Number(e.target.parentNode.dataset.index);
+      renderLightbox();
     }
   });
 
@@ -90,10 +100,12 @@ function getFlickrPhotos() {
     });
 }
 
+// See https://www.flickr.com/services/api/misc.urls.html
 function getFlickrUrl({ farmId, serverId, id, secret }) {
   return `https://farm${farmId}.staticflickr.com/${serverId}/${id}_${secret}.jpg`;
 }
 
+// Re-renders the photo gallery when new images are loaded from Flickr
 function renderPhotos() {
   const gallery = document.querySelector(".gallery");
   const lightbox = document.querySelector(".lightbox");
@@ -121,6 +133,7 @@ function renderPhotos() {
   });
 }
 
+// Re-renders the lightbox when the selected photo changes
 function renderLightbox() {
   const photo = galleryPhotos[currentPhotoIndex];
   const lightbox = document.querySelector(".lightbox");
@@ -136,9 +149,12 @@ function renderLightbox() {
       ${galleryPhotos
         .map(
           ({ src, title }, i) =>
-            `<img src="${src}" alt="${title}" class=${
+            `<button class="lightbox-strip-button ${
               i === currentPhotoIndex ? "current" : ""
-            } />`
+            }" data-index="${i}">
+              <img src="${src}" alt="${title}" />
+            </button>
+          `
         )
         .join("\n")}
     </div>
