@@ -1,3 +1,5 @@
+React/TypeScript re-implementation of the original prompt.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
