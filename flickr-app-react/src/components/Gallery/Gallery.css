@@ -1,0 +1,22 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.gallery > button {
+  transition: all 250ms;
+  border: none;
+  background: none;
+  display: block;
+  margin: 10px 0;
+}
+
+.gallery > button:hover {
+  transform: scale(1.05);
+}
+
+.gallery img {
+  height: 100%;
+  width: 100%;
+}
