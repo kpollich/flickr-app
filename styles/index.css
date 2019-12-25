@@ -47,7 +47,7 @@ main {
 }
 
 .lightbox {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
   color: white;
   height: 100%;
   left: 0;
@@ -55,6 +55,12 @@ main {
   top: 0;
   width: 100%;
   z-index: 10;
+}
+
+.lightbox:not(.hidden) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lightbox-close {
@@ -70,40 +76,8 @@ main {
   margin: 2rem auto;
 }
 
-.lightbox-current-image > img {
-  height: 500px;
-}
-
 .lightbox-current-image > button {
   margin: 0 1rem;
-}
-
-.lightbox-strip {
-  display: grid;
-  grid-gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: repeat(8, 1fr);
-  margin: auto;
-  width: 70%;
-}
-
-.lightbox-strip-button {
-  height: 100px;
-  width: 100px;
-  background: none;
-  border: none;
-}
-
-.lightbox-strip-button.current {
-  border: 2px solid gold;
-}
-
-.lightbox-strip-button > img {
-  height: 100%;
-  width: 100%;
-
-  object-fit: contain;
 }
 
 .lightbox-previous,
@@ -113,6 +87,20 @@ main {
   border: none;
   color: white;
   font-size: 32px;
+}
+
+.lightbox-previous,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+}
+
+.lightbox-previous {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
 }
 
 .lightbox-previous:disabled,
@@ -148,16 +136,6 @@ main {
     position: absolute;
     right: 1rem;
     top: 1rem;
-  }
-
-  .lightbox-strip {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0.5rem;
-    width: 100%;
-  }
-
-  .lightbox-strip-button {
-    width: 100%;
   }
 
   .lightbox-previous,
