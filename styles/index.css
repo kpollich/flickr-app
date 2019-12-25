@@ -143,4 +143,12 @@ main {
   .lightbox-close {
     font-size: 24px;
   }
+
+  .lightbox-previous {
+    left: 5px;
+  }
+
+  .lightbox-next {
+    right: 5px;
+  }
 }

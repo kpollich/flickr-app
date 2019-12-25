@@ -1,6 +1,6 @@
 const FLICKR_API_URL = "https://www.flickr.com/services/rest/";
 
-class FlickrApi {
+class Flickr {
   constructor(apiKey) {
     this.apiKey = apiKey;
   }
