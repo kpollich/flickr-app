@@ -46,6 +46,10 @@ main {
   width: 10rem;
 }
 
+.load-more.hidden {
+  display: none;
+}
+
 .lightbox {
   background-color: rgba(0, 0, 0, 0.75);
   color: white;

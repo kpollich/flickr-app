@@ -5,6 +5,8 @@ class Gallery {
 
     this.photos = [];
     this.currentPhotoIndex = 0;
+
+    this.loadMore = document.querySelector(".load-more");
     this.bindLoadMoreButton();
   }
 
@@ -25,13 +27,13 @@ class Gallery {
       this.goToNextPhoto.bind(this)
     );
 
+    this.loadMore.classList.remove("hidden");
     this.renderPhotos();
   }
 
   bindLoadMoreButton() {
     const loadMore = document.querySelector("button.load-more");
 
-    loadMore.classList.remove("hidden");
     loadMore.addEventListener("click", () => {
       this.flickrPage++;
 

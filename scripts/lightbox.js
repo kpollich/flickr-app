@@ -21,24 +21,11 @@ class Lightbox {
     // Prevent closing the lightbox when the image area is clicked
     currentImageContainer.addEventListener("click", e => e.stopPropagation());
 
-    const prevButton = document.createElement("button");
-    prevButton.type = "button";
-    prevButton.className = "lightbox-previous";
-    prevButton.innerHTML = "&larr;";
-    prevButton.disabled = photoIndex === 0;
-    prevButton.addEventListener("click", this.onPrevClick);
-
-    const nextButton = document.createElement("button");
-    nextButton.type = "button";
-    nextButton.className = "lightbox-next";
-    nextButton.innerHTML = "&rarr;";
-    nextButton.disabled = photoIndex === this.photos.length - 1;
-    nextButton.addEventListener("click", this.onNextClick);
+    const prevButton = this.createPrevButton(photoIndex);
+    const nextButton = this.createNextButton(photoIndex);
 
     const photo = this.photos[photoIndex];
-    const img = document.createElement("img");
-    img.src = photo.src;
-    img.alt = photo.title;
+    const img = this.createImg(photo);
 
     currentImageContainer.appendChild(prevButton);
     currentImageContainer.appendChild(img);
@@ -47,6 +34,33 @@ class Lightbox {
     this.content.appendChild(currentImageContainer);
 
     this.show();
+  }
+
+  createImg(photo) {
+    const img = document.createElement("img");
+    img.src = photo.src;
+    img.alt = photo.title;
+    return img;
+  }
+
+  createNextButton(photoIndex) {
+    const nextButton = document.createElement("button");
+    nextButton.type = "button";
+    nextButton.className = "lightbox-next";
+    nextButton.innerHTML = "&rarr;";
+    nextButton.disabled = photoIndex === this.photos.length - 1;
+    nextButton.addEventListener("click", this.onNextClick);
+    return nextButton;
+  }
+
+  createPrevButton(photoIndex) {
+    const prevButton = document.createElement("button");
+    prevButton.type = "button";
+    prevButton.className = "lightbox-previous";
+    prevButton.innerHTML = "&larr;";
+    prevButton.disabled = photoIndex === 0;
+    prevButton.addEventListener("click", this.onPrevClick);
+    return prevButton;
   }
 
   bindClose() {
