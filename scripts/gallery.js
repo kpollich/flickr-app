@@ -10,16 +10,9 @@ class Gallery {
     this.bindLoadMoreButton();
   }
 
-  async init(photos) {
-    if (!photos) {
-      const initialPhotos = await this.flickrApi.getFlickrPhotos(
-        this.flickrPage
-      );
-
-      this.photos = initialPhotos;
-    } else {
-      this.photos = [...this.photos, ...photos];
-    }
+  async init() {
+    const initialPhotos = await this.flickrApi.getFlickrPhotos(this.flickrPage);
+    this.photos = initialPhotos;
 
     this.lightbox = new FlickrGalleryApp.Lightbox(
       this.photos,
@@ -31,6 +24,13 @@ class Gallery {
     this.renderPhotos();
   }
 
+  async update(photos) {
+    this.photos = [...this.photos, ...photos];
+    this.lightbox.photos = this.photos;
+
+    this.renderPhotos();
+  }
+
   bindLoadMoreButton() {
     const loadMore = document.querySelector("button.load-more");
 
@@ -38,7 +38,7 @@ class Gallery {
       this.flickrPage++;
 
       this.flickrApi.getFlickrPhotos(this.flickrPage).then(photos => {
-        this.init(photos);
+        this.update(photos);
       });
     });
   }
