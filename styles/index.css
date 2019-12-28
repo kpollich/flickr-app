@@ -73,17 +73,10 @@ main {
   top: 2rem;
 }
 
-.lightbox-content {
-  height: 100%;
-  width: 100%;
-}
-
 .lightbox-current-image {
   align-items: center;
   display: flex;
-  height: 100%;
   justify-content: center;
-  width: 100%;
 }
 
 .lightbox-current-image > button {
@@ -91,7 +84,8 @@ main {
 }
 
 .lightbox-current-image img {
-  width: 60%;
+  max-height: 80vh;
+  width: 60vw;
 }
 
 .lightbox-previous,
