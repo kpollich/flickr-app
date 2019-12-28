@@ -38,28 +38,34 @@ class Lightbox {
 
   createImg(photo) {
     const img = document.createElement("img");
+
     img.src = photo.src;
     img.alt = photo.title;
+
     return img;
   }
 
   createNextButton(photoIndex) {
     const nextButton = document.createElement("button");
+
     nextButton.type = "button";
     nextButton.className = "lightbox-next";
     nextButton.innerHTML = "&rarr;";
     nextButton.disabled = photoIndex === this.photos.length - 1;
     nextButton.addEventListener("click", this.onNextClick);
+
     return nextButton;
   }
 
   createPrevButton(photoIndex) {
     const prevButton = document.createElement("button");
+
     prevButton.type = "button";
     prevButton.className = "lightbox-previous";
     prevButton.innerHTML = "&larr;";
     prevButton.disabled = photoIndex === 0;
     prevButton.addEventListener("click", this.onPrevClick);
+
     return prevButton;
   }
 
@@ -97,3 +103,5 @@ class Lightbox {
     this.isOpen = false;
   }
 }
+
+FlickrGalleryApp.Lightbox = Lightbox;

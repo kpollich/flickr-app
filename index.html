@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="styles/normalize.css" />
     <link rel="stylesheet" href="styles/index.css" />
 
-    <script src="./scripts/flickr.js"></script>
+    <script>
+      // Create a single global object to avoid global namespace pollution
+      window.FlickrGalleryApp = {};
+    </script>
+
+    <script src="./scripts/flickr-api.js"></script>
     <script src="./scripts/gallery.js"></script>
     <script src="./scripts/lightbox.js"></script>
 

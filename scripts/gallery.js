@@ -21,7 +21,7 @@ class Gallery {
       this.photos = [...this.photos, ...photos];
     }
 
-    this.lightbox = new Lightbox(
+    this.lightbox = new FlickrGalleryApp.Lightbox(
       this.photos,
       this.goToPreviousPhoto.bind(this),
       this.goToNextPhoto.bind(this)
@@ -37,7 +37,7 @@ class Gallery {
     loadMore.addEventListener("click", () => {
       this.flickrPage++;
 
-      flickrApi.getFlickrPhotos(this.flickrPage).then(photos => {
+      this.flickrApi.getFlickrPhotos(this.flickrPage).then(photos => {
         this.init(photos);
       });
     });
@@ -45,6 +45,9 @@ class Gallery {
 
   renderPhotos() {
     const gallery = document.querySelector(".gallery");
+
+    // TODO: Rework this implementation so we progressively render photos rather than
+    // repainting the entire gallery contents every time a new set of photos is loaded
     gallery.innerHTML = "";
 
     this.photos.forEach(({ src, title }, index) => {
@@ -79,3 +82,5 @@ class Gallery {
     }
   }
 }
+
+FlickrGalleryApp.Gallery = Gallery;

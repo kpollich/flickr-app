@@ -1,6 +1,6 @@
 const FLICKR_API_URL = "https://www.flickr.com/services/rest/";
 
-class Flickr {
+class FlickrApi {
   constructor(apiKey) {
     this.apiKey = apiKey;
   }
@@ -40,3 +40,5 @@ class Flickr {
     return `https://farm${farmId}.staticflickr.com/${serverId}/${id}_${secret}.jpg`;
   }
 }
+
+FlickrGalleryApp.FlickrApi = FlickrApi;
